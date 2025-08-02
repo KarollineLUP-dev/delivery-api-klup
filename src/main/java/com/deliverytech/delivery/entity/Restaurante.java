@@ -1,7 +1,6 @@
 package com.deliverytech.delivery.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -16,23 +18,27 @@ import jakarta.persistence.Table;
 @AllArgsConstructor
 @Table(name = "restaurantes")
 public class Restaurante {
- @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- private Long id;
 
- private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
- private String categoria;
+    private String name;
 
- private String telefone;
+    private String category;
 
- private String endereco;
+    private String address;
 
- @Column(name = "taxa_entrega")
- private BigDecimal taxaEntrega;
+    private String phone;
 
- private BigDecimal avaliacao;
+    @Column(name = "fee_delivery")
+    private BigDecimal feeDelivery;
 
- private BigDecimal ativo;
+    private BigDecimal feedback;
 
+    private Boolean active;
+
+    public void inactivate() {
+        this.active = false;
+    }
 }
